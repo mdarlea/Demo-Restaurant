@@ -9,7 +9,15 @@
 
 app.config(['$routeProvider',
     function ($routeProvider) {
+        $routeProvider.when("/home", {
+            controller: "homeController",
+            templateUrl: "/app/views/home.html"
+        });
 
+        $routeProvider.when("/register", {
+            controller: "registerController",
+            templateUrl: "/app/views/register.html"
+        });
     }
 ]);
 
