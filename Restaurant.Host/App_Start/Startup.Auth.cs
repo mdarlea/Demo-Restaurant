@@ -53,9 +53,6 @@ namespace Restaurant.Host
             var facebookProvider = DependencyResolver.Current.GetService<FacebookAuthenticationProvider>();
             var twitterProvider = DependencyResolver.Current.GetService<TwitterAuthenticationProvider>();
 
-            // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

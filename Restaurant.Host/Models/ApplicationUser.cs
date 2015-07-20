@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Restaurant.Host.Authorization
+namespace Restaurant.Host.Models
 {
     public class ApplicationUser : IdentityUser
     {

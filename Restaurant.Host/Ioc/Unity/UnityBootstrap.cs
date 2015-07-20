@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Twitter;
 using Microsoft.Practices.Unity;
 using Restaurant.Host.Authorization;
+using Restaurant.Host.Models;
 using Restaurant.Host.Providers;
 using Swaksoft.Infrastructure.Crosscutting.Authorization.Repositories;
 using Swaksoft.Infrastructure.Crosscutting.Authorization.Token;
