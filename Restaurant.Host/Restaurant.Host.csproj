@@ -165,6 +165,10 @@
     <Reference Include="Swaksoft.Infrastructure.Crosscutting.Authorization">
       <HintPath>..\packages\Swaksoft.Infrastructure.Crosscutting.Authorization.1.0.4\lib\net45\Swaksoft.Infrastructure.Crosscutting.Authorization.dll</HintPath>
     </Reference>
+    <Reference Include="Swaksoft.Infrastructure.Data.Seedwork, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Infrastructure.Data.Seedwork.1.0.4\lib\net45\Swaksoft.Infrastructure.Data.Seedwork.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
