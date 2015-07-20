@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - Chinese Restaurant</title>
@@ -37,7 +37,12 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angularjs")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrapui")
+    @Scripts.Render("~/bundles/swaksoft")
+    @Scripts.Render("~/bundles/app")
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
