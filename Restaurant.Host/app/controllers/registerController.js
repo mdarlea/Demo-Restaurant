@@ -4,7 +4,17 @@
         ['$scope', '$location', '$timeout', '$authService', 'swAppSettings', function ($scope, $location, $timeout, $authService, swAppSettings) {
             $scope.savedSuccessfully = false;
             $scope.message = "";
-           
+            $scope.registerData = {
+                email: null,
+                hometown: null,
+                password: null,
+                confirmPassword: null
+            };
+
+            $scope.requiredOptions = {
+                required: true
+            };
+
             $scope.register = function () {
 
                 var startTimer = function () {

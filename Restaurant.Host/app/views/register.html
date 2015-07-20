@@ -3,26 +3,29 @@
 <sw-form-field label="Email:"
                placeholder="Email"
                type="text"
-               data-ng-model="email">
+               data-ng-model="registerData.email" options="requiredOptions">
 </sw-form-field>
 <sw-form-field label="Hometown:"
                placeholder="Hometown"
                type="text"
-               data-ng-model="hometown">
+               data-ng-model="registerData.hometown">
 </sw-form-field>
 <sw-form-field label="Password:"
                placeholder="Password"
                type="text"
-               data-ng-model="password">
+               data-ng-model="registerData.password" options="requiredOptions">
 </sw-form-field>
 <sw-form-field label="Confirm Password:"
                placeholder="Confirm Password"
                type="text"
-               data-ng-model="confirmPassword">
+               data-ng-model="registerData.confirmPassword" options="requiredOptions">
 </sw-form-field>
 
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-        <input type="submit" class="btn btn-default" value="Register" />
+        <button class="btn btn-default" type="button" data-ng-click="register()">
+            Register
+        </button>
     </div>
+    
 </div>
