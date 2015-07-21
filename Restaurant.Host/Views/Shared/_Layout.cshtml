@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include data-src="'/app/views/top-navigation.html'"></div>
+    <nav class="navbar navbar-default" role="navigation" data-ng-include data-src="'/app/views/top-navigation.html'" style="margin-top: -50px;"></nav>
     <div class="container body-content">
         @RenderBody()
         <hr />

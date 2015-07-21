@@ -8,17 +8,17 @@
                 <sw-form-field label="User Name:"
                                placeholder="User Name"
                                type="text"
-                               data-ng-model="userName" options="requiredOptions">
+                               data-ng-model="loginData.userName" options="requiredOptions">
                 </sw-form-field>
                 <sw-form-field label="Password:"
                                placeholder="Password"
                                type="password"
-                               data-ng-model="password" options="requiredOptions">
+                               data-ng-model="loginData.password" options="requiredOptions">
                 </sw-form-field>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button class="btn btn-default" type="button" data-ng-click="logIn()">
+                        <button class="btn btn-default" type="button" data-ng-click="login()">
                             Log in
                         </button>
                     </div>

@@ -43,7 +43,8 @@ namespace Restaurant.Host
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
-                 "~/Content/Site.css"));
+                 "~/Content/Site.css",
+                 "~/Content/navigation.css"));
 
             var configuration = new StringBuilder("~/app/providers/configuration");
 

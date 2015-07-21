@@ -1,7 +1,8 @@
 ﻿(function () {
     'use strict';
     angular.module('app').controller('registerController',
-        ['$scope', '$location', '$timeout', '$authService', 'swAppSettings', function ($scope, $location, $timeout, $authService, swAppSettings) {
+        ['$rootScope', '$scope', '$location', '$timeout', '$authService', 'swAppSettings',
+         function ($rootScope, $scope, $location, $timeout, $authService, swAppSettings) {
             $scope.savedSuccessfully = false;
             $scope.message = "";
             $scope.registerData = {
@@ -28,6 +29,9 @@
                     .then(function (response) {
                         $scope.savedSuccessfully = true;
                         $scope.message = "User has been registered successfully, you will be redicted to the home page in 2 seconds.";
+
+                        $rootScope.$broadcast('userAuthenticated', true);
+
                         startTimer();
                     }, function (response) {
                         var errors = [];
@@ -35,6 +39,8 @@
                             errors.push(response.ModelState[key]);
                         }
                         $scope.message = "Failed to register user due to:" + errors.join(' ');
+
+                        $rootScope.$broadcast('userAuthenticated', false);
                     });
             };
 
