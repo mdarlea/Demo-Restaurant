@@ -5,7 +5,7 @@
  * Created By: Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)
  * https://github.com/mdarlea/angular-common
 
- * Version: 1.0.0 - 2015-07-14
+ * Version: 1.0.1 - 2015-07-20
  * License: ISC
  */
 angular.module('sw.common', ['swCommon','swAuth']);
@@ -726,6 +726,38 @@ angular.module('sw.common', ['swCommon','swAuth']);
                 
                 /**
                 * @ngdoc method
+                * @name swAuth.$authService#register
+                * @methodOf swAuth.$authService
+                * @description Registers a new user with the current application and authenticates the user
+                * @param {object} registerData User model                
+                * @param {object} registerData.userName User name
+                * @param {object} registerData.password User password
+                * @param {object} registerData.confirmPassword User password for verification
+                * @returns {Object} the promise to return the authorization token from the server for the registered user. 
+                 * See the {@link swAuth.$authService#authorize authorize} method for a description of the JSON object returned by the service response
+                */                
+                register: function (registerData) {
+                    
+                    var deferred = $q.defer();
+                    
+                    var data = angular.extend({}, registerData, { clientId: swAppSettings.clientId });
+                    
+                    $http.post(serviceBase + 'api/account/register', data).success(function (response) {
+                        
+                        service._authorize(response);
+                        
+                        deferred.resolve(response);
+
+                    }).error(function (err, status) {
+                        service.logOut();
+                        deferred.reject(err);
+                    });
+                    
+                    return deferred.promise;
+                },                
+                
+                /**
+                * @ngdoc method
                 * @name swAuth.$authService#registerExternal
                 * @methodOf swAuth.$authService
                 * @description Registers the user with a third party provider such as Twitter or Facebook and authenticates this user
@@ -739,10 +771,9 @@ angular.module('sw.common', ['swCommon','swAuth']);
                     
                     var deferred = $q.defer();
                     
-                    var data = $.extend(true, {}, registerExternalData, { clientId: swAppSettings.clientId });
+                    var data = angular.extend({}, registerExternalData, { clientId: swAppSettings.clientId });
                     
-                    $http.post(serviceBase + 'api/account/registerexternal', data)
-                .success(function (response) {
+                    $http.post(serviceBase + 'api/account/registerexternal', data).success(function (response) {
                         
                         service._authorize(response);
                         

@@ -5,11 +5,11 @@
  * Created By: Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)
  * https://github.com/mdarlea/sw-ui-bootstrap
 
- * Version: 1.0.18 - 2015-07-19
+ * Version: 1.0.19 - 2015-07-20
  * License: ISC
  */
 angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.tpls', 'sw.ui.bootstrap.form','sw.ui.bootstrap.image','sw.ui.bootstrap.route']);
-angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','template/form/field-text.html','template/form/form-field.html']);
+angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','template/form/field-password.html','template/form/field-text.html','template/form/form-field.html']);
 (function () {
     'use strict';
     
@@ -40,7 +40,7 @@ angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','templat
     * Renders a form field. The following field types are supported: text, date
     *
     * @param {string} label The form field label
-    * @param {string} [type='text'] The field type. Acceptable values: 'text', 'date'
+    * @param {string} [type='text'] The field type. Acceptable values: 'text', 'password', 'date'
     * @param {string} [placeholder=''] The field watermark
     * @param {boolean} [inline=false] 
     *   If true then the 'form-inline' css bootstrap class is used. 
@@ -101,6 +101,15 @@ angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','templat
                         placeholder="Birth Date" 
                         type="date" 
                         data-ng-model="person.dob">
+                </sw-form-field>
+                <sw-form-field label="Password:" 
+                        placeholder="Password" 
+                        type="password" 
+                        data-ng-model="person.password" inline="true">
+                    <span class="field-validation-valid text-danger" 
+                          data-valmsg-for="Password" 
+                          data-valmsg-replace="true">
+                    </span>
                 </sw-form-field>
             </form>     
      
@@ -163,6 +172,7 @@ angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','templat
                 restrict: 'EA',
                 replace:true,
                 require: '?ngModel',
+                transclude: true,
                 scope: {
                     label: '@',
                     type: '@',
@@ -475,17 +485,6 @@ angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','templat
             })();     
         </script>        
         <style>
-             .background {
-                position: relative; 
-                top: 0;left: 0;
-                width: 300px; 
-                height: 280px;
-                background-position:center; 
-                background-repeat:no-repeat;       
-                -ms-background-size:300px 280px;
-                background-size:300px 280px;
-            }
-           
             .beach,
             .green,
             .mountain,
@@ -496,6 +495,18 @@ angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','templat
                 -ms-transition: background-image 2s, -ms-transform 2s;
                 -o-transition:background-image 2s, transform 2s;
                 transition:background-image 2s, transform 2s;
+            }
+              
+             .background {
+                position: relative; 
+                top: 0;
+                left: 0;
+                width: 300px; 
+                height: 280px;
+                background-position:center; 
+                background-repeat:no-repeat;       
+                -ms-background-size:300px 280px;
+                background-size:300px 280px;
             }
 
             .background.beach {
@@ -713,6 +724,16 @@ angular.module("template/form/field-date.html", []).run(["$templateCache", funct
     "");
 }]);
 
+angular.module("template/form/field-password.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-password.html",
+    "<input type=\"password\"\n" +
+    "       class=\"form-control\"\n" +
+    "       id=\"Password\"\n" +
+    "       required=\"{{$parent.fieldOptions.required}}\"\n" +
+    "       data-ng-model=\"$parent.ngModel\" />\n" +
+    "");
+}]);
+
 angular.module("template/form/field-text.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/form/field-text.html",
     "<input type=\"text\"\n" +
@@ -731,7 +752,7 @@ angular.module("template/form/form-field.html", []).run(["$templateCache", funct
     "\n" +
     "    <span data-ng-include=\"template\"></span>\n" +
     "   \n" +
-    "    <span class=\"help-block\"></span>\n" +
+    "    <span ng-transclude></span>\n" +
     "</div>\n" +
     "");
 }]);

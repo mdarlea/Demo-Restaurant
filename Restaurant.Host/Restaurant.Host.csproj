@@ -325,12 +325,16 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\homeController.js" />
+    <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\registerController.js" />
+    <Content Include="app\controllers\topNavController.js" />
     <Content Include="app\providers\configuration.Debug.js" />
     <Content Include="app\providers\configuration.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\views\home.html" />
+    <Content Include="app\views\login.html" />
     <Content Include="app\views\register.html" />
+    <Content Include="app\views\top-navigation.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1168,12 +1172,12 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\sw-common-1.0.0.js" />
-    <Content Include="Scripts\sw-common-1.0.0.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.18.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.18.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.18.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.18.min.js" />
+    <Content Include="Scripts\sw-common-1.0.1.js" />
+    <Content Include="Scripts\sw-common-1.0.1.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.19.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.19.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -1188,7 +1192,6 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Home\_Home.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
