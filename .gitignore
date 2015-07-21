@@ -18,6 +18,7 @@ local.properties
 evt.txt*
 
 docs/
+node_modules
 
 # External tool builders
 .externalToolBuilders/
