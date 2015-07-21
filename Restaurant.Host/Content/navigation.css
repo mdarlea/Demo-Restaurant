@@ -9,10 +9,10 @@
     border-top-left-radius: 3px;
     -ms-border-bottom-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    -ms-border-top-right-radius: 15px;
-    border-top-right-radius: 15px;
-    -ms-border-bottom-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    -ms-border-top-right-radius: 50px;
+    border-top-right-radius: 50px;
+    -ms-border-bottom-right-radius: 50px;
+    border-bottom-right-radius: 50px;
 
     background-position: center;
     background-repeat: no-repeat;

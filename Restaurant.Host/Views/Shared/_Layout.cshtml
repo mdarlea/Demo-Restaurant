@@ -10,13 +10,16 @@
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation" data-ng-include data-src="'/app/views/top-navigation.html'" style="margin-top: -50px;"></nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Chinese Restaurant</p>
-        </footer>
+<div class="container body-content">
+    <div id="spinner" style="display: none; margin-top: 10px;">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
     </div>
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Chinese Restaurant</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
