@@ -14,6 +14,7 @@ using Owin;
 using Restaurant.Host.Authorization;
 using Restaurant.Host.Models;
 using Restaurant.Host.Providers;
+using Swaksoft.Configuration.Social;
 using Swaksoft.Core.External;
 
 namespace Restaurant.Host
@@ -82,7 +83,7 @@ namespace Restaurant.Host
             app.UseOAuthBearerTokens(OAuthOptions);
 
             //get the configuration settings for external providers
-            var configSection = Host.Configuration.ConfigurationSettings.Current;
+            var configSection = ConfigurationSettings.Current;
 
             var twitter = configSection.ProvidersCollection[ExternalProvider.Twitter];
             var facebook = configSection.ProvidersCollection[ExternalProvider.Facebook];

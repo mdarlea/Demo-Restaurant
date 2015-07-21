@@ -151,6 +151,10 @@
       <HintPath>..\packages\Swaksoft.Application.Seedwork.1.0.5.0\lib\net45\Swaksoft.Application.Seedwork.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Swaksoft.Configuration.Social, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Configuration.Social.1.0.0.0\lib\net45\Swaksoft.Configuration.Social.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Swaksoft.Core, Version=1.0.7.0, Culture=neutral, PublicKeyToken=f8a6cbf6057bc61f, processorArchitecture=MSIL">
       <HintPath>..\packages\Swaksoft.Core.1.0.7.0\lib\net45\Swaksoft.Core.dll</HintPath>
       <Private>True</Private>
@@ -159,8 +163,9 @@
       <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.7.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Swaksoft.Infrastructure.Crosscutting">
-      <HintPath>..\..\DDD\packages\Swaksoft.Infrastructure.Crosscutting.1.0.4\lib\net45\Swaksoft.Infrastructure.Crosscutting.dll</HintPath>
+    <Reference Include="Swaksoft.Infrastructure.Crosscutting, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Swaksoft.Infrastructure.Crosscutting.1.0.4\lib\net45\Swaksoft.Infrastructure.Crosscutting.dll</HintPath>
     </Reference>
     <Reference Include="Swaksoft.Infrastructure.Crosscutting.Authorization">
       <HintPath>..\packages\Swaksoft.Infrastructure.Crosscutting.Authorization.1.0.4\lib\net45\Swaksoft.Infrastructure.Crosscutting.Authorization.dll</HintPath>
@@ -294,10 +299,6 @@
     <Compile Include="Authorization\ApplicationUserDbContext.cs" />
     <Compile Include="Authorization\ApplicationUserManager.cs" />
     <Compile Include="Authorization\ApplicationUserRepository.cs" />
-    <Compile Include="Configuration\ConfigurationSettings.cs" />
-    <Compile Include="Configuration\SocialProvider.cs" />
-    <Compile Include="Configuration\SocialProviderCollection.cs" />
-    <Compile Include="Configuration\SocialSection.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
