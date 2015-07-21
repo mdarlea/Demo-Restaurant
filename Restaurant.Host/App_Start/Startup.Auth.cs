@@ -8,6 +8,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.Twitter;
 using Owin;
@@ -33,11 +34,13 @@ namespace Restaurant.Host
         {
             PublicClientId = "web";
 
+            var provider = DependencyResolver.Current.GetService<OAuthAuthorizationServerProvider>();
+
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
                 AuthorizeEndpointPath = new PathString("/Account/Authorize"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
+                Provider = provider,
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };
@@ -89,8 +92,14 @@ namespace Restaurant.Host
             var facebook = configSection.ProvidersCollection[ExternalProvider.Facebook];
             var google = configSection.ProvidersCollection[ExternalProvider.Google];
 
+            var oauthRefreshTokenProvider = DependencyResolver.Current.GetService<IAuthenticationTokenProvider>();
             lock (thisObject)
             {
+                OAuthBearerOptions = new OAuthBearerAuthenticationOptions()
+                {
+                    AccessTokenProvider = oauthRefreshTokenProvider
+                };
+
                 //Configure Facebook External Login
                 FacebookAuthOptions = new FacebookAuthenticationOptions
                 {
@@ -113,6 +122,9 @@ namespace Restaurant.Host
                     Provider = googleProvider
                 };
             }
+
+            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+            
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(

@@ -70,6 +70,9 @@ namespace Restaurant.Host.Models
     public class RegisterViewModel
     {
         [Required]
+        public string ClientId { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

@@ -290,6 +290,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authorization\ApplicationSignInManager.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Helpers\RestaurantApiController.cs" />
     <Compile Include="Migrations\201507200308550_InitialCreate.cs" />
     <Compile Include="Migrations\201507200308550_InitialCreate.Designer.cs">
       <DependentUpon>201507200308550_InitialCreate.cs</DependentUpon>
@@ -318,6 +320,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Providers\GoogleAuthProvider.cs" />
+    <Compile Include="Providers\OAuthRefreshTokenProvider.cs" />
     <Compile Include="Providers\TwitterAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />

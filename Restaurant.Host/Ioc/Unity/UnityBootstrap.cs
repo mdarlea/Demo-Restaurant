@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Infrastructure;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.Twitter;
 using Microsoft.Practices.Unity;
 using Restaurant.Host.Authorization;
@@ -33,6 +35,10 @@ namespace Restaurant.Host.Ioc.Unity
 
         private void RegisterProviders()
         {
+            _container.RegisterType<OAuthAuthorizationServerProvider, ApplicationOAuthProvider>();
+
+            _container.RegisterType<IAuthenticationTokenProvider, OAuthRefreshTokenProvider>();
+
             _container.RegisterType<IGoogleOAuth2AuthenticationProvider, GoogleAuthProvider>();
             _container.RegisterType<FacebookAuthenticationProvider, FacebookAuthProvider>();
             _container.RegisterType<TwitterAuthenticationProvider, TwitterAuthProvider>();
