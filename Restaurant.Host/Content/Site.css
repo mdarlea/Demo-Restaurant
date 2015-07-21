@@ -35,6 +35,10 @@ textarea {
     -moz-animation: spinm .7s infinite linear;
 }
  
+.small-field {
+    width: 50px;
+}
+
 @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}

@@ -29,6 +29,11 @@ appRestaurant.config(['$routeProvider',
             controller: "homeController",
             templateUrl: "/app/views/home.html"
         });
+
+        $routeProvider.when("/reservation", {
+            controller: "reservationController",
+            templateUrl: "/app/views/reservation.html"
+        });
     }
 ]);
 

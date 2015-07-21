@@ -330,6 +330,7 @@
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\registerController.js" />
+    <Content Include="app\controllers\reservationController.js" />
     <Content Include="app\controllers\topNavController.js" />
     <Content Include="app\providers\configuration.Debug.js" />
     <Content Include="app\providers\configuration.js" />
@@ -337,6 +338,7 @@
     <Content Include="app\views\home.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\register.html" />
+    <Content Include="app\views\reservation.html" />
     <Content Include="app\views\top-navigation.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
@@ -1181,10 +1183,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sw-common-1.0.2.js" />
     <Content Include="Scripts\sw-common-1.0.2.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.19.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.19.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.25.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.25.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.25.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.25.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
