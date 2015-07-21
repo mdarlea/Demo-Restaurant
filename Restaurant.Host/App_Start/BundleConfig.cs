@@ -63,7 +63,7 @@ namespace Restaurant.Host
                     .IncludeDirectory("~/app/directives", "*.js", true)
                     .IncludeDirectory("~/app/services", "*.js", true));
 
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }

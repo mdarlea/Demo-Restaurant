@@ -18,11 +18,7 @@
             if (!$authService.authentication.isAuth) {
                 $location.path('/login');
             }
-
-            $scope.required = {
-                required: true
-            }
-
+            
             $scope.timeOptions = {
                 required: true,
                 hstep: 1,

@@ -8,10 +8,6 @@
 
             }
 
-            $scope.required = {
-                required: true
-            }
-
             $scope.loginData = {
                 userName: null,
                 password:null

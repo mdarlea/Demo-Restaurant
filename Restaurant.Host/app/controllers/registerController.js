@@ -11,11 +11,7 @@
                 password: null,
                 confirmPassword: null
             };
-
-            $scope.requiredOptions = {
-                required: true
-            };
-
+             
             $scope.register = function () {
 
                 var startTimer = function () {

@@ -8,21 +8,21 @@
             <div class="col-xs-3">
                 <sw-form-field label="Reservation Date:" 
                                type="date"
-                               data-ng-model="data.reservationDate" options="required">
+                               data-ng-model="data.reservationDate" ng-required="true">
                 </sw-form-field>
 
-                <sw-form-field label="Reservation Time:" 
+                <sw-form-field label="Reservation Time:"
                                type="time"
-                               data-ng-model="data.reservationTime" options="timeOptions">
+                               data-ng-model="data.reservationTime" ng-required="true">
                 </sw-form-field>
 
-                <sw-form-field label="Name:" 
-                               data-ng-model="data.name" options="required">
+                <sw-form-field label="Name:"
+                               data-ng-model="data.name" options="required" ng-required="true">
                 </sw-form-field>
 
-                <sw-form-field label="How many people will be in the party?" 
+                <sw-form-field label="How many people will be in the party?"
                                css="'small-field'"
-                               data-ng-model="data.guestsCount" options="required">
+                               data-ng-model="data.guestsCount" options="required" ng-required="true">
                 </sw-form-field>
 
                 <div class="form-group">
