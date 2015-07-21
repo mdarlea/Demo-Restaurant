@@ -1,4 +1,10 @@
-﻿var app = angular.module('app',
+﻿/**
+* @ngdoc overview
+* @name app
+* @description
+* Main application modue.
+*/
+var appRestaurant = angular.module('appRestaurant',
     ['ngRoute',
         'ui.bootstrap',
         'ngResource',
@@ -7,7 +13,7 @@
         'sw.common',
         'sw.ui.bootstrap']);
 
-app.config(['$routeProvider',
+appRestaurant.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.when("/register", {
             controller: "registerController",
@@ -26,11 +32,11 @@ app.config(['$routeProvider',
     }
 ]);
 
-app.config(['$httpProvider', function ($httpProvider) {
+appRestaurant.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 }]);
 
-app.config(function ($provide) {
+appRestaurant.config(function ($provide) {
     $provide.decorator('$utilities', function ($delegate) {
         angular.extend($delegate, {
             getProviderName: function (root, url) {
@@ -47,6 +53,6 @@ app.config(function ($provide) {
     });
 });
 
-app.run(['$authService', function ($authService) {
+appRestaurant.run(['$authService', function ($authService) {
     $authService.fillAuthData();
 }]);

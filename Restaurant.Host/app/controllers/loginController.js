@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('app').controller('loginController',
+    angular.module('appRestaurant').controller('loginController',
         ['$scope', '$location', '$authService', 'swAppSettings', function ($scope, $location, $authService, swAppSettings) {
             $scope.auth = $authService.authentication;
 

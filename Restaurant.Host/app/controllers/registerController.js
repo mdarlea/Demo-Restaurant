@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('app').controller('registerController',
+    angular.module('appRestaurant').controller('registerController',
         ['$rootScope', '$scope', '$location', '$timeout', '$authService', 'swAppSettings',
          function ($rootScope, $scope, $location, $timeout, $authService, swAppSettings) {
             $scope.savedSuccessfully = false;

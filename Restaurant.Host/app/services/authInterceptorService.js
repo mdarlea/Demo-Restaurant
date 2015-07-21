@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('app').factory('authInterceptorService', ['$q', '$injector', '$location',
+    angular.module('appRestaurant').factory('authInterceptorService', ['$q', '$injector', '$location',
         function ($q, $injector, $location) {
 
             var authInterceptorServiceFactory = {

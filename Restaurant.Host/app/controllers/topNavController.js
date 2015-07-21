@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('app').controller('topNavController',
+    angular.module('appRestaurant').controller('topNavController',
         ['$scope', '$location', '$authService', function ($scope, $location, $authService) {
             $scope.auth = $authService.authentication;
 
