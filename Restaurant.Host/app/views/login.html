@@ -1,1 +1,29 @@
-﻿
+﻿<h2>Log In</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <form class="form-horizontal" role="form">
+                <h4>Use a local account to log in.</h4>
+                <hr/>
+                <sw-form-field label="User Name:"
+                               placeholder="User Name"
+                               type="text"
+                               data-ng-model="userName" options="requiredOptions">
+                </sw-form-field>
+                <sw-form-field label="Password:"
+                               placeholder="Password"
+                               type="password"
+                               data-ng-model="password" options="requiredOptions">
+                </sw-form-field>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-default" type="button" data-ng-click="logIn()">
+                            Log in
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

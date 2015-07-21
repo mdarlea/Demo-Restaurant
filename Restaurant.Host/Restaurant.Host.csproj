@@ -1172,8 +1172,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\sw-common-1.0.1.js" />
-    <Content Include="Scripts\sw-common-1.0.1.min.js" />
+    <Content Include="Scripts\sw-common-1.0.2.js" />
+    <Content Include="Scripts\sw-common-1.0.2.min.js" />
     <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.js" />
     <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.19.min.js" />
     <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.19.js" />

@@ -5,7 +5,7 @@
  * Created By: Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)
  * https://github.com/mdarlea/angular-common
 
- * Version: 1.0.1 - 2015-07-20
+ * Version: 1.0.2 - 2015-07-20
  * License: ISC
  */
 angular.module('sw.common', ['swCommon','swAuth']);
@@ -830,6 +830,7 @@ angular.module('sw.common', ['swCommon','swAuth']);
     /**
     * @ngdoc service
     * @name swAuth.$authenticationTokenFactory
+    * @requires swCommon.swAppSettings
     * @requires localStorageService
     * @requires swAuth.AuthenticationToken     
     * @description Service that performs the following functions:
@@ -838,9 +839,9 @@ angular.module('sw.common', ['swCommon','swAuth']);
     *   - removes the current authetnication token from the local storage   
     */              
     angular.module('swAuth').factory('$authenticationTokenFactory',
-        ['localStorageService', 'AuthenticationToken', function (localStorageService, AuthenticationToken) {
+        ['swAppSettings', 'localStorageService', 'AuthenticationToken', function (swAppSettings, localStorageService, AuthenticationToken) {
             
-            var key = "authorizationData";
+            var key = "authorizationData_" + swAppSettings.clientId;
             
             var factory = {
                 /**
