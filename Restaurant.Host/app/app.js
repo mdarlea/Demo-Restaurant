@@ -1,6 +1,6 @@
 ﻿/**
 * @ngdoc overview
-* @name app
+* @name appRestaurant
 * @description
 * Main application modue.
 */

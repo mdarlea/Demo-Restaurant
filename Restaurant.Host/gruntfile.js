@@ -1,6 +1,7 @@
 ﻿module.exports = function (grunt) {
     grunt.initConfig({
         dist: 'dist',
+        swVersion: '1.0.19',
         pkg: grunt.file.readJSON('package.json'),
         
         ngdocs: {
@@ -11,12 +12,12 @@
                 scripts: [
                     'angular.js',
                     'Scripts/angular-ui/ui-bootstrap-tpls.min.js',
-                    'Scripts/sw-ui-bootstrap/sw-ui-bootstrap-tpls-1.0.19.min.js'
+                    'Scripts/sw-ui-bootstrap/sw-ui-bootstrap-tpls-<%= swVersion %>.min.js'
                 ],
                 sourceLink: 'https://github.com/mdarlea/Demo_Restaurant/blob/master/{{file}}'
             },
             api: {
-                src: ['app/**/*.js', '!app/**/*.spec.js', 'Scripts/sw-ui-bootstrap/*.js', 'Scripts/sw-*.js'],
+                src: ['app/**/*.js', '!app/**/*.spec.js', 'Scripts/sw-ui-bootstrap/sw-ui-bootstrap-<%= swVersion %>.js', 'Scripts/sw-*.js'],
                 title: 'API Documentation'
             }
         },

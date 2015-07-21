@@ -23,7 +23,8 @@
             */
             $scope.auth = $authService.authentication;
 
-            if (!$authService.authentication.isAuth) {
+            //redirect to home page if not authorized
+            if (!$scope.auth.isAuth) {
                 $location.path('/login');
             }
 
