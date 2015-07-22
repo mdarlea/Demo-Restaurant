@@ -2,6 +2,7 @@
 using System.Web;
 using Application.Restaurant.ReservationModule.Services;
 using Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg;
+using Infrastructure.Data.Restaurant.ReservationModule.Repositories;
 using Infrastructure.Data.Restaurant.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -37,6 +38,7 @@ namespace Restaurant.Host.Ioc.Unity
         public void Register()
         {
             RegisterAuthorization();
+            RegisterUnitOfWorks();
             RegisterAppServices();
             RegisterRepositories();
         }
@@ -96,7 +98,7 @@ namespace Restaurant.Host.Ioc.Unity
         /// </summary>
         private void RegisterRepositories()
         {
-            _container.RegisterType<IReservationRepository>();
+            _container.RegisterType<IReservationRepository,ReservationRepository>();
         }
 
         /// <summary>

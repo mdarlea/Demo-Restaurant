@@ -11,12 +11,13 @@ namespace Domain.Restaurant.ReservationModule.Aggregates
         [Required]
         public string CreatedBy { get; set; }
 
+        [Required]
         public DateTime CreatedOn { get; set; }
 
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             return this.ValidationResults().NotNullOrEmpty(e => e.CreatedBy).Execute();
         }

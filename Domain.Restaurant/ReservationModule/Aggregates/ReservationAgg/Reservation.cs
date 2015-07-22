@@ -9,7 +9,7 @@ namespace Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg
     /// <summary>
     /// Reservation Aggregate Root
     /// </summary>
-    public class Reservation : AggregateRoot, IValidatableObject
+    public class Reservation : AggregateRoot
     {
         [Required]
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg
 
         public bool IsDeleted { get; set;}
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             Expression<Func<Reservation, int>> propertyExpression = e => e.GuestsCount;
 
