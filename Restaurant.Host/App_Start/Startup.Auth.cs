@@ -94,12 +94,12 @@ namespace Restaurant.Host
             var facebook = configSection.ProvidersCollection[ExternalProvider.Facebook];
             var google = configSection.ProvidersCollection[ExternalProvider.Google];
 
-            var oauthRefreshTokenProvider = DependencyResolver.Current.GetService<IAuthenticationTokenProvider>();
+           
             lock (thisObject)
             {
                 OAuthBearerOptions = new OAuthBearerAuthenticationOptions()
                 {
-                    AccessTokenProvider = oauthRefreshTokenProvider
+                    AccessTokenProvider = OAuthOptions. AccessTokenProvider
                 };
 
                 //Configure Facebook External Login

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using Restaurant.Host.Models;
@@ -15,12 +16,12 @@ namespace Restaurant.Host.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly IDependencyResolver _dependencyResolver;
+        private readonly IIdentityRepository<ApplicationUser> _identityRepository;
 
-        public ApplicationOAuthProvider(IDependencyResolver dependencyResolver)
+        public ApplicationOAuthProvider(IIdentityRepository<ApplicationUser> identityRepository)
         {
-            if (dependencyResolver == null) throw new ArgumentNullException("dependencyResolver");
-            _dependencyResolver = dependencyResolver;
+            if (identityRepository == null) throw new ArgumentNullException("identityRepository");
+            _identityRepository = identityRepository;
         }
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
@@ -42,9 +43,7 @@ namespace Restaurant.Host.Providers
                 return Task.FromResult<object>(null);
             }
 
-            using (var repository = _dependencyResolver.GetService<IIdentityRepository<ApplicationUser>>())
-            {
-                var client = repository.FindClient(context.ClientId);
+                var client = _identityRepository.FindClient(context.ClientId);
                 if (client == null)
                 {
                     context.SetError("invalid_clientId", string.Format("Client '{0}' is not registered in the system.", context.ClientId));
@@ -73,7 +72,7 @@ namespace Restaurant.Host.Providers
 
                 context.OwinContext.Set("as:clientAllowedOrigin", client.AllowedOrigin);
                 context.OwinContext.Set("as:clientRefreshTokenLifeTime", client.RefreshTokenLifeTime.ToString());
-            }
+
             
             context.Validated();
             return Task.FromResult<object>(null);
@@ -87,10 +86,8 @@ namespace Restaurant.Host.Providers
             if (allowedOrigin == null) allowedOrigin = "*";
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
-
-            using (var repository = _dependencyResolver.GetService<IIdentityRepository<ApplicationUser>>())
-            {
-                var user = await repository.FindUserAsync(context.UserName, context.Password);
+            
+                var user = await _identityRepository.FindUserAsync(context.UserName, context.Password);
 
                 if (user == null)
                 {
@@ -114,7 +111,7 @@ namespace Restaurant.Host.Providers
                 });
                 var ticket = new AuthenticationTicket(identity, props);
                 context.Validated(ticket);    
-            }
+            
         }
 
         public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
