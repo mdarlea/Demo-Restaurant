@@ -5,15 +5,22 @@
         ['$resource', 'swAppSettings',
         function ($resource, swAppSettings) {
             return $resource(
-                swAppSettings.apiServiceBaseUri + 'api/reservation/:action',
+                swAppSettings.apiServiceBaseUri + 'api/reservation/:id',
                 {
-                     action: '@action'
+                     id: '@id'
                 },
                 {
                     'addNewReservation': {
                         method: 'POST',
-                        params: { action: 'addNewReservation' },
                         isArray: false
+                    },
+                    'getAllReservations' : {
+                        method: 'GET',
+                        isArray: true
+                    },
+                    'getReservation' : {
+                        method: 'GET',
+                        isArray: true
                     }
                 });
         }]);

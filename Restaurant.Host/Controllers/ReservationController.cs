@@ -27,21 +27,35 @@ namespace Restaurant.Host.Controllers
         }
 
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = _reservationAppService.GetAllReservations();
+
+            if (result.Status == ActionResultCode.Success)
+            {
+                return Ok(result.Items);
+            }
+
+            return BadRequest(result.Message);
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            var result = _reservationAppService.GetReservation(id);
+
+            if (result.Status == ActionResultCode.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
         }
 
         // POST api/<controller>
         [ResponseType(typeof(ReservationResult))]
-        [Route("AddNewReservation")]
-        public IHttpActionResult AddNewReservation(ReservationViewModel viewModel)
+        public IHttpActionResult Post([FromBody]ReservationViewModel viewModel)
         {
             if (viewModel == null) throw new ArgumentNullException("viewModel");
             if (!ModelState.IsValid)
@@ -77,6 +91,11 @@ namespace Restaurant.Host.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+
+        // PUT api/<controller>/5
+        public void Put(int id, [FromBody]ReservationViewModel viewModel)
+        {
         }
 
         // DELETE api/<controller>/5

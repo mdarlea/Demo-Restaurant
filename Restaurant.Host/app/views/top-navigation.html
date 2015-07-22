@@ -19,13 +19,13 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="#/reservation">
+                        <a href="/#/reservation">
                             Make a new reservation
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#">
+                        <a href="/#/reservations">
                             All Reservations
                         </a>
                     </li>
@@ -40,15 +40,15 @@
         </form>
         <ul class="nav navbar-nav navbar-right" ng-if="auth.isAuth">
             <li>
-                <a href="#/home">Hello {{getUserName()}}!</a>
+                <a href="/#/home">Hello {{getUserName()}}!</a>
             </li>
             <li>
                 <a href="#" data-ng-click="logOut()">Log off</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-show="!auth.isAuth">
-            <li><a href="#/register">Register</a></li>
-            <li><a href="#/login">Log in</a></li>
+            <li><a href="/#/register">Register</a></li>
+            <li><a href="/#/login">Log in</a></li>
         </ul>
     </div>
 </div>

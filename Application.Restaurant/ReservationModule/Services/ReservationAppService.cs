@@ -1,9 +1,7 @@
 ﻿using System;
-using Application.Restaurant.Dto;
 using Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg;
 using Swaksoft.Application.Seedwork.Extensions;
 using Swaksoft.Application.Seedwork.Services;
-using Swaksoft.Application.Seedwork.Validation;
 using Swaksoft.Core.Dto;
 using Swaksoft.Infrastructure.Crosscutting.Extensions;
 
@@ -24,7 +22,7 @@ namespace Application.Restaurant.ReservationModule.Services
         /// </summary>
         /// <param name="request">Create reservation DTO</param>
         /// <returns>The newly created reserrvation DTO</returns>
-        public ReservationResult AddNewReservation(ReservationRequest request)
+        public Dto.ReservationResult AddNewReservation(Dto.ReservationRequest request)
         {
             if (request == null) throw new ArgumentNullException("request");
 
@@ -35,7 +33,51 @@ namespace Application.Restaurant.ReservationModule.Services
                 _reservationRepository.SaveEntity(reservation);
 
                 //returns success
-                return reservation.ProjectedAs<ReservationResult>();
+                return reservation.ProjectedAs<Dto.ReservationResult>();
+            });
+        }
+
+        /// <summary>
+        /// Get all the reservations
+        /// </summary>
+        /// <returns>A collection with found reservations</returns>
+        public Dto.CollectionActionResult<Dto.Reservation> GetAllReservations()
+        {
+            return Call(() =>
+            {
+                var spec = ReservationSpecifications.GetAll();
+                var reservations = _reservationRepository.AllMatching(spec);
+
+                return new Dto.CollectionActionResult<Dto.Reservation>
+                {
+                    Status = ActionResultCode.Success,
+                    Items = reservations.ProjectedAsCollection<Dto.Reservation>()
+                };
+            });
+        }
+
+        /// <summary>
+        /// Get a reservation by ID
+        /// </summary>
+        /// <returns>The reservation with the given ID</returns>
+        public Dto.ReservationResult GetReservation(int id)
+        {
+            if (id < 1) throw new ArgumentOutOfRangeException("id");
+
+            return Call(() =>
+            {
+                var reservation = _reservationRepository.Get(id);
+
+                //returns failure if a reservation is not found
+                if (reservation == null)
+                {
+                    return new Dto.ReservationResult
+                    {
+                        Status = ActionResultCode.Failed,
+                        Message = string.Format("Could not find a reservation with the {0} id", id)
+                    };
+                }
+                return reservation.ProjectedAs<Dto.ReservationResult>();
             });
         }
 

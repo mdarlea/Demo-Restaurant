@@ -332,6 +332,7 @@
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\registerController.js" />
+    <Content Include="app\controllers\reservationsController.js" />
     <Content Include="app\controllers\reservationController.js" />
     <Content Include="app\controllers\topNavController.js" />
     <Content Include="app\providers\configuration.Debug.js" />
@@ -342,6 +343,7 @@
     <Content Include="app\views\login.html" />
     <Content Include="app\views\register.html" />
     <Content Include="app\views\reservation.html" />
+    <Content Include="app\views\reservations.html" />
     <Content Include="app\views\top-navigation.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />

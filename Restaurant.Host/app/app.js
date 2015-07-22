@@ -11,7 +11,8 @@ var appRestaurant = angular.module('appRestaurant',
         'LocalStorageModule',
         'angular-loading-bar',
         'sw.common',
-        'sw.ui.bootstrap']);
+        'sw.ui.bootstrap',
+        'ui.grid']);
 
 appRestaurant.config(['$routeProvider',
     function ($routeProvider) {
@@ -33,6 +34,11 @@ appRestaurant.config(['$routeProvider',
         $routeProvider.when("/reservation", {
             controller: "reservationController",
             templateUrl: "/app/views/reservation.html"
+        });
+
+        $routeProvider.when("/reservations", {
+            controller: "reservationsController",
+            templateUrl: "/app/views/reservations.html"
         });
     }
 ]);

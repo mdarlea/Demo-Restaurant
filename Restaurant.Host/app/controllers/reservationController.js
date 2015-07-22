@@ -8,6 +8,8 @@
     * @requires $scope
     * @requires $location
     * @requires $authService
+    * @requires appRestaurant.$reservationService
+    * @requires swCommon.$utilities
 
     * @description Reservation controller
     */
@@ -48,5 +50,6 @@
                         $scope.loading = false;
                     });
             };
+
         }]);
 })();

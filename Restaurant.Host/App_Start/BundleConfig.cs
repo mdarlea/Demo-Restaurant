@@ -41,10 +41,15 @@ namespace Restaurant.Host
                 "~/Scripts/sw-common-{version}.js",
                 "~/Scripts/sw-ui-bootstrap/sw-ui-bootstrap-tpls-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/gridui").Include(
+                    "~/Scripts/ui-grid-unstable.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css",
-                 "~/Content/navigation.css"));
+                 "~/Content/navigation.css",
+                 "~/Content/ui-grid-unstable.css"));
 
             var configuration = new StringBuilder("~/app/providers/configuration");
 

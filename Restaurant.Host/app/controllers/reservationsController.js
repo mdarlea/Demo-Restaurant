@@ -1,0 +1,60 @@
+﻿(function () {
+    'use strict';
+
+    /**
+    * 
+    * @ngdoc object
+    * @name appRestaurant.reservationController
+    * @requires $scope
+    * @requires $location
+    * @requires $authService
+    * @requires appRestaurant.$reservationService    
+
+    * @description Controller used to display all reservations
+    */
+
+    angular.module('appRestaurant').controller('reservationsController',
+        ['$scope', '$location', '$authService', '$reservationService',
+        function ($scope, $location, $authService, $reservationService) {
+
+            //redirect to home page if not authorized
+            if (!$authService.authentication.isAuth) {
+                $location.path('/login');
+            };
+
+            // Access outside scope functions from row template
+            $scope.rowFormatter = function (row) {
+                return row.entity.gender === 'male';
+            };
+            
+            $scope.loading = true;
+
+            var reservationNameTemplate = "<a href=\'/#/reservation/{{row.entity.id}}\'>{{row.entity[col.field]}}</a>";
+            var reservationDateTemplate = '<div class="ui-grid-cell-contents">{{row.entity[col.field] | date:\'shortDate\'}}</div>';
+            var reservationTimeTemplate = '<div class="ui-grid-cell-contents">{{row.entity.reservationDateTime | date:\'shortTime\'}}</div>';
+
+            $scope.gridOptions = {
+                enableFiltering: true,
+                paginationPageSizes: [25, 50, 75],
+                paginationPageSize: 25,
+                data: 'data',
+                columnDefs: [
+                  { displayName: 'Reserved By', field: 'name', cellTemplate: reservationNameTemplate },
+                  { displayName: 'Reservation Date', field: 'reservationDateTime', cellTemplate: reservationDateTemplate },
+                  { displayName: 'Reservation Time', field: 'id', cellTemplate: reservationTimeTemplate },
+                  { displayName: '# Of Guests', field: 'guestsCount' }
+                ]
+            };
+
+            //get all the reservations
+            $reservationService.getAllReservations().$promise
+                    .then(function (data) {
+                        $scope.data = data;
+                    }, function (err) {
+                        $scope.message = err.data && err.data.message;
+                    })
+                    .finally(function (response) {
+                        $scope.loading = false;
+                    });
+        }]);
+})();

@@ -1,5 +1,4 @@
 using System;
-using Application.Restaurant.Dto;
 
 namespace Application.Restaurant.ReservationModule.Services
 {
@@ -13,6 +12,18 @@ namespace Application.Restaurant.ReservationModule.Services
         /// </summary>
         /// <param name="request">Create reservation DTO</param>
         /// <returns>The newly created reserrvation DTO</returns>
-        ReservationResult AddNewReservation(ReservationRequest request);
+        Dto.ReservationResult AddNewReservation(Dto.ReservationRequest request);
+
+        /// <summary>
+        /// Get all the reservations
+        /// </summary>
+        /// <returns>A collection with found reservations</returns>
+        Dto.CollectionActionResult<Dto.Reservation> GetAllReservations();
+
+        /// <summary>
+        /// Get a reservation by ID
+        /// </summary>
+        /// <returns>The reservation with the given ID</returns>
+        Dto.ReservationResult GetReservation(int id);
     }
 }
