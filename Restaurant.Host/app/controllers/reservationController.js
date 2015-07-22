@@ -17,12 +17,18 @@
             //redirect to home page if not authorized
             if (!$authService.authentication.isAuth) {
                 $location.path('/login');
-            }
-            
-            $scope.timeOptions = {
-                required: true,
-                hstep: 1,
-                mstep: 0
-            }
+            };
+
+            $scope.numberExpr = /^[1-9][0-9]*$/;
+
+            // function to submit the reservation after all validation has occurred            
+            $scope.submitReservation = function (isValid) {
+
+                // check to make sure the form is completely valid
+                if (!isValid) {
+                    $scope.message = "Invalid form data";
+                    return false;
+                }
+            };
         }]);
 })();

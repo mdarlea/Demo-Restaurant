@@ -5,10 +5,11 @@
  * Created By: Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)
  * https://github.com/mdarlea/sw-ui-bootstrap
 
- * Version: 1.0.28 - 2015-07-21
+ * Version: 1.0.31 - 2015-07-21
  * License: ISC
  */
-angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.form','sw.ui.bootstrap.image','sw.ui.bootstrap.route']);
+angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.tpls', 'sw.ui.bootstrap.form','sw.ui.bootstrap.image','sw.ui.bootstrap.route']);
+angular.module('sw.ui.bootstrap.tpls', ['template/form/field-date.html','template/form/field-password-pattern.html','template/form/field-password.html','template/form/field-text-pattern.html','template/form/field-text.html','template/form/field-time.html','template/form/form-field.html']);
 (function () {
     'use strict';
     
@@ -40,6 +41,7 @@ angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.form','sw.ui.bootstrap.image
     *
     * @param {string} label The form field label
     * @param {string} [type='text'] The field type. Acceptable values: 'text', 'password', 'date', 'time'
+    * @param {string} [name=null] The field name
     * @param {string} [placeholder=''] The field watermark
     * @param {boolean} [group=true] 
     *   If true then the 'form-group' css bootstrap class is used         
@@ -109,8 +111,9 @@ angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.form','sw.ui.bootstrap.image
                         ng-required=true
                         data-ng-model="person.appTime">
                 </sw-form-field>     
-                <sw-form-field label="E-mail:" 
-                        placeholder="Email"                         
+                <sw-form-field label="E-mail:" name="email"
+                        placeholder="Email"                
+                        ng-required="true"         
                         data-ng-model="person.email" control="true">
                     <p class="help-block">Please provide your E-mail</p>
                 </sw-form-field>                
@@ -229,13 +232,12 @@ angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.form','sw.ui.bootstrap.image
                     group: '@',
                     inline: '@',
                     control: '@',
+                    name:'@',
                     css: '=',
                     options: '=',
                     ngModel: '=',
                     ngChange: '=',
                     ngRequired: '=',
-                    ngMinlength: '=',
-                    ngMaxlength: '=',
                     ngPattern: '=',
                     ngTrim: '='
                 },
@@ -762,3 +764,109 @@ angular.module('sw.ui.bootstrap', ['sw.ui.bootstrap.form','sw.ui.bootstrap.image
     ]);
 
 })();
+angular.module("template/form/field-date.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-date.html",
+    "<div class=\"input-group\">\n" +
+    "    <input type=\"text\"\n" +
+    "           class=\"form-control\"\n" +
+    "           name=\"{{$parent.name}}\"\n" +
+    "           placeholder=\"{{$parent.placeholder}}\"\n" +
+    "           datepicker-popup=\"{{$parent.fieldOptions.format}}\"\n" +
+    "           data-ng-model=\"$parent.ngModel\"\n" +
+    "           is-open=\"$parent.opened\"\n" +
+    "           min-date=\"$parent.fieldOptions.minDate\"\n" +
+    "           max-date=\"$parent.fieldOptions.maxDate\"\n" +
+    "           datepicker-options=\"$parent.dateOptions\"\n" +
+    "           date-disabled=\"$parent.disabled(date, mode)\"\n" +
+    "           ng-required=\"$parent.ngRequired\"\n" +
+    "           ng-change=\"$parent.ngChange\"\n" +
+    "           close-text=\"Close\" />\n" +
+    "    <span class=\"input-group-btn\">\n" +
+    "        <button type=\"button\"\n" +
+    "                class=\"btn btn-default btn-calendar\"\n" +
+    "                ng-click=\"$parent.open($event)\">\n" +
+    "            <i class=\"glyphicon glyphicon-calendar icon icon-calendar\"></i>\n" +
+    "        </button>\n" +
+    "    </span>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("template/form/field-password-pattern.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-password-pattern.html",
+    "<input type=\"password\"\n" +
+    "       name=\"{{$parent.name}}\"\n" +
+    "       class=\"form-control\"\n" +
+    "       data-ng-model=\"$parent.ngModel\"\n" +
+    "       ng-required=\"$parent.ngRequired\"\n" +
+    "       ng-pattern=\"$parent.ngPattern\"\n" +
+    "       ng-change=\"$parent.ngChange\"\n" +
+    "       ng-minlength=\"$parent.ngMinlength\"\n" +
+    "       ng-maxlength=\"$parent.ngMaxlength\" />\n" +
+    "");
+}]);
+
+angular.module("template/form/field-password.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-password.html",
+    "<input type=\"password\"\n" +
+    "       name=\"{{$parent.name}}\"\n" +
+    "       class=\"form-control\"\n" +
+    "       data-ng-model=\"$parent.ngModel\"\n" +
+    "       ng-required=\"$parent.ngRequired\"\n" +
+    "       ng-change=\"$parent.ngChange\" />\n" +
+    "");
+}]);
+
+angular.module("template/form/field-text-pattern.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-text-pattern.html",
+    "<input type=\"text\"\n" +
+    "       name=\"{{$parent.name}}\"\n" +
+    "       ng-class=\"$parent.css\"\n" +
+    "       class=\"form-control\"\n" +
+    "       data-ng-model=\"$parent.ngModel\"\n" +
+    "       ng-required=\"$parent.ngRequired\"\n" +
+    "       ng-pattern=\"$parent.ngPattern\"\n" +
+    "       ng-change=\"$parent.ngChange\"\n" +
+    "       ng-trim=\"$parent.ngTrim\"\n" +
+    "       title=\"{{$parent.title}}\"\n" +
+    "       placeholder=\"{{$parent.placeholder}}\" />\n" +
+    "");
+}]);
+
+angular.module("template/form/field-text.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-text.html",
+    "<input type=\"text\"\n" +
+    "       ng-class=\"$parent.css\"\n" +
+    "       name=\"{{$parent.name}}\"\n" +
+    "       class=\"form-control\"\n" +
+    "       data-ng-model=\"$parent.ngModel\"\n" +
+    "       ng-required=\"$parent.ngRequired\"\n" +
+    "       ng-change=\"$parent.ngChange\"\n" +
+    "       ng-trim=\"$parent.ngTrim\"\n" +
+    "       title=\"{{$parent.title}}\"\n" +
+    "       placeholder=\"{{$parent.placeholder}}\" />\n" +
+    "");
+}]);
+
+angular.module("template/form/field-time.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/field-time.html",
+    "<timepicker data-ng-model=\"$parent.ngModel\"\n" +
+    "            ng-required=\"$parent.ngRequired\"\n" +
+    "            ng-change=\"$parent.ngChange\"\n" +
+    "            hour-step=\"$parent.timeOptions.hstep\"\n" +
+    "            minute-step=\"$parent.timeOptions.mstep\"\n" +
+    "            show-meridian=\"$parent.timeOptions.ismeridian\">\n" +
+    "</timepicker>");
+}]);
+
+angular.module("template/form/form-field.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/form/form-field.html",
+    "<div ng-class=\"{'form-inline':inline,'form-group':group,'control-group':control}\">\n" +
+    "    <label class=\"control-label\" ng-if=\"label\">{{label}}</label>\n" +
+    "\n" +
+    "    <span data-ng-include=\"template\"></span>\n" +
+    "    <span ng-transclude></span>\n" +
+    "</div>\n" +
+    "");
+}]);

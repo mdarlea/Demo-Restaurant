@@ -12,7 +12,14 @@
                 confirmPassword: null
             };
              
-            $scope.register = function () {
+            $scope.emailExpr = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)\b/;
+
+            $scope.register = function (isValid) {
+                // check to make sure the form is completely valid
+                if (!isValid) {
+                    $scope.message = "Invalid form data";
+                    return false;
+                }
 
                 var startTimer = function () {
                     var timer = $timeout(function () {

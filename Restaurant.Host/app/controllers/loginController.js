@@ -13,7 +13,11 @@
                 password:null
             };
 
-            $scope.login = function () {
+            $scope.login = function (isValid) {
+                if (!isValid) {
+                    $scope.message = "Invalid form data";
+                    return false;
+                }
 
                 $authService.login($scope.loginData)
                     .then(function (response) {

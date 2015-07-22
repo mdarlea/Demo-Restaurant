@@ -1189,10 +1189,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sw-common-1.0.2.js" />
     <Content Include="Scripts\sw-common-1.0.2.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.28.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.28.min.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.28.js" />
-    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.28.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.31.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-1.0.31.min.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.31.js" />
+    <Content Include="Scripts\sw-ui-bootstrap\sw-ui-bootstrap-tpls-1.0.31.min.js" />
     <Content Include="Scripts\ui-grid-unstable.js" />
     <Content Include="Scripts\ui-grid-unstable.min.js" />
     <Content Include="Scripts\_references.js" />

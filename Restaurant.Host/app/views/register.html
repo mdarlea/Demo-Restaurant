@@ -1,42 +1,38 @@
 ﻿<h2>Register</h2>
 <div class="row">
-    <div class="col-md-8">
-        <section>
-            <form class="form-horizontal" role="form">
-                <h4>Create a new account.</h4>
-                <hr />
-                <div class="row">
-                    <sw-form-field label="Email:"
-                                   placeholder="Email"
-                                   type="text"
-                                   data-ng-model="registerData.email" ng-required="true"
-                    </sw-form-field>
-                    <sw-form-field label="Hometown:"
-                                   placeholder="Hometown"
-                                   type="text"
-                                   data-ng-model="registerData.hometown">
-                    </sw-form-field>
-                    <sw-form-field label="Password:"
-                                   placeholder="Password"
-                                   type="password"
-                                   data-ng-model="registerData.password" ng-required="true">
-                    </sw-form-field>
-                    <sw-form-field label="Confirm Password:"
-                                   placeholder="Confirm Password"
-                                   type="password"
-                                   data-ng-model="registerData.confirmPassword" ng-required="true">
-                    </sw-form-field>
+    <form class="form-horizontal" role="form" name="registerForm" ng-submit="submitRegistration(registerForm.$valid)" novalidate>
+        <h4>Create a new account.</h4>
+        <hr/>
+        <div class="col-xs-3">
+            <sw-form-field label="Email:" name="email"
+                           placeholder="Email"
+                           ng-pattern="emailExpr"
+                           type="text"
+                           data-ng-model="registerData.email" ng-required="true">
+                <p ng-show="registerForm.email.$invalid" class="help-block">Your e-mail will be used for the user name</p>
+            </sw-form-field>
+            <sw-form-field label="Hometown:" name="hometown"
+                           placeholder="Hometown"
+                           type="text"
+                           data-ng-model="registerData.hometown">
+            </sw-form-field>
+            <sw-form-field label="Password:" name="password"
+                            placeholder="Password"
+                            type="password"
+                            data-ng-model="registerData.password" ng-required="true">
+            </sw-form-field>
+            <sw-form-field label="Confirm Password:" name="confirmPassword"
+                            placeholder="Confirm Password"
+                            type="password"
+                            data-ng-model="registerData.confirmPassword" ng-required="true">
+            </sw-form-field>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-default" type="button" data-ng-click="register()">
-                                Register
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-        </section>
-    </div>
+                
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success" type="submit" ng-disabled="registerForm.$invalid">
+                    Register
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
