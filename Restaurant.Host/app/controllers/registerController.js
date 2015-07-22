@@ -28,6 +28,7 @@
                     }, 2000);
                 }
 
+                $scope.loading = true;
                 $authService.register($scope.registerData)
                     .then(function (response) {
                         $scope.savedSuccessfully = true;
@@ -44,8 +45,9 @@
                         $scope.message = "Failed to register user due to:" + errors.join(' ');
 
                         $rootScope.$broadcast('userAuthenticated', false);
+                    }).finally(function (response) {
+                        $scope.loading = false;
                     });
             };
-
         }]);
 })();
