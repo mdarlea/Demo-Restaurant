@@ -21,13 +21,9 @@
             if (!$authService.authentication.isAuth) {
                 $location.path('/login');
             };
-
-            // Access outside scope functions from row template
-            $scope.rowFormatter = function (row) {
-                return row.entity.gender === 'male';
-            };
             
             $scope.loading = true;
+            $scope.message = "Please wait while I am loading the reservations...";
 
             var reservationNameTemplate = "<a href=\'/#/reservation/{{row.entity.id}}\'>{{row.entity[col.field]}}</a>";
             var reservationDateTemplate = '<div class="ui-grid-cell-contents">{{row.entity[col.field] | date:\'shortDate\'}}</div>';
@@ -46,15 +42,17 @@
                 ]
             };
 
+            $scope.errMessage = null;
+            
             //get all the reservations
             $reservationService.getAllReservations().$promise
-                    .then(function (data) {
-                        $scope.data = data;
-                    }, function (err) {
-                        $scope.message = err.data && err.data.message;
-                    })
-                    .finally(function (response) {
-                        $scope.loading = false;
-                    });
+            .then(function (data) {
+                $scope.data = data;
+            }, function (err) {
+                $scope.errMessage = err.data && err.data.message;
+            }).finally(function (response) {
+                $scope.loading = false;
+                $scope.message = null;
+            });
         }]);
 })();
