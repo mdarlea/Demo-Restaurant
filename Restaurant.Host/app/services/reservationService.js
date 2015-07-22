@@ -20,7 +20,7 @@
                     },
                     'getReservation' : {
                         method: 'GET',
-                        isArray: true
+                        isArray: false
                     }
                 });
         }]);

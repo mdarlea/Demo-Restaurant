@@ -339,10 +339,14 @@
     <Content Include="app\providers\configuration.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\reservationService.js" />
+    <Content Include="app\views\error-partial.html" />
     <Content Include="app\views\home.html" />
+    <Content Include="app\views\loading-partial.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\register.html" />
-    <Content Include="app\views\reservation.html" />
+    <Content Include="app\views\reservation-edit.html" />
+    <Content Include="app\views\reservation-partial.html" />
+    <Content Include="app\views\reservation-new.html" />
     <Content Include="app\views\reservations.html" />
     <Content Include="app\views\top-navigation.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

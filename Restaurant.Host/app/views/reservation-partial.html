@@ -1,0 +1,36 @@
+﻿<sw-form-field label="Reservation Date:" name="reservationDate"
+                type="date"
+                data-ng-model="data.reservationDate" ng-required="true">
+    <p ng-show="reservationForm.reservationDate.$invalid" class="help-block">
+        The reservation date is required
+    </p>
+</sw-form-field>
+
+<sw-form-field label="Reservation Time:" name="reservationTime"
+                type="time"
+                data-ng-model="data.reservationTime" ng-required="true">
+    <p ng-show="reservationForm.reservationTime.$invalid" class="help-block">
+        The reservation time is required
+    </p>
+</sw-form-field>
+
+<sw-form-field label="Name:" name="name"
+                data-ng-model="data.name" options="required" ng-required="true">
+    <p ng-show="reservationForm.name.$invalid" class="help-block">
+        The reservation name is required
+    </p>
+</sw-form-field>
+
+<sw-form-field label="How many people will be in the party?" name="guestsCount"
+                ng-pattern="numberExpr"
+                css="'small-field'"
+                data-ng-model="data.guestsCount" options="required" ng-required="true">
+    <p ng-show="reservationForm.guestsCount.$invalid" class="help-block">
+        The number of guests in the party in required
+    </p>
+</sw-form-field>
+
+<div class="form-group">
+    <!-- Button -->
+    <button type="submit" class="btn btn-success" ng-disabled="loading || reservationForm.$invalid">Submit</button>
+</div>

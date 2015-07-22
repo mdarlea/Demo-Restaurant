@@ -25,7 +25,7 @@
             $scope.loading = true;
             $scope.message = "Please wait while I am loading the reservations...";
 
-            var reservationNameTemplate = "<a href=\'/#/reservation/{{row.entity.id}}\'>{{row.entity[col.field]}}</a>";
+            var reservationNameTemplate = "<a href=\'/#/reservation/{{row.entity.id}}/edit\'>{{row.entity[col.field]}}</a>";
             var reservationDateTemplate = '<div class="ui-grid-cell-contents">{{row.entity[col.field] | date:\'shortDate\'}}</div>';
             var reservationTimeTemplate = '<div class="ui-grid-cell-contents">{{row.entity.reservationDateTime | date:\'shortTime\'}}</div>';
 

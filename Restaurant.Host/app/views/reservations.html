@@ -1,13 +1,5 @@
-﻿<div class="row" ng-if="message">
-    <div class="alert alert-info">
-        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{message}}
-    </div>
-</div>
+﻿<div class="row" ng-if="loading" data-ng-include data-src="'/app/views/loading-partial.html'"></div>
 <div class="row">
     <div class="grid" ui-grid="gridOptions" ng-show="!loading"></div>
 </div>
-<div class="row" ng-if="errMessage">
-    <div class="alert alert-danger">
-        {{errMessage}}
-    </div>
-</div>
+<div data-ng-include data-src="'/app/views/error-partial.html'"></div>

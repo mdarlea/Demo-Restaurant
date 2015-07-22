@@ -1,0 +1,13 @@
+﻿<div class="row" ng-if="loading" data-ng-include data-src="'/app/views/loading-partial.html'"></div>
+<div class="row" ng-if="!loading">
+    <form class="form-horizontal" name="reservationForm" ng-submit="updateReservation(reservationForm.$valid)" novalidate>
+        <fieldset>
+            <div id="legend">
+                <legend class="">Modify Reservation</legend>
+            </div>
+
+            <div class="col-xs-3" data-ng-include data-src="'/app/views/reservation-partial.html'"></div>
+        </fieldset>
+    </form>
+</div>
+<div data-ng-include data-src="'/app/views/error-partial.html'"></div>

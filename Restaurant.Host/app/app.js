@@ -33,7 +33,12 @@ appRestaurant.config(['$routeProvider',
 
         $routeProvider.when("/reservation", {
             controller: "reservationController",
-            templateUrl: "/app/views/reservation.html"
+            templateUrl: "/app/views/reservation-new.html"
+        });
+
+        $routeProvider.when("/reservation/:id/edit", {
+            controller: "reservationController",
+            templateUrl: "/app/views/reservation-edit.html"
         });
 
         $routeProvider.when("/reservations", {
