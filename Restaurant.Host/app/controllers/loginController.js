@@ -19,6 +19,7 @@
                     return false;
                 }
 
+                $scope.loginData.useRefreshTokens = true;
                 $authService.login($scope.loginData)
                     .then(function (response) {
                         $location.path(swAppSettings.indexPage);
