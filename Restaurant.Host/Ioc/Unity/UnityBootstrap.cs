@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Web;
+using Application.Restaurant.ReservationModule.Services;
+using Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg;
+using Infrastructure.Data.Restaurant.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Facebook;
@@ -11,6 +14,7 @@ using Microsoft.Practices.Unity;
 using Restaurant.Host.Authorization;
 using Restaurant.Host.Models;
 using Restaurant.Host.Providers;
+using Swaksoft.Domain.Seedwork;
 using Swaksoft.Infrastructure.Crosscutting.Authorization.Repositories;
 using Swaksoft.Infrastructure.Crosscutting.Authorization.Token;
 
@@ -27,23 +31,19 @@ namespace Restaurant.Host.Ioc.Unity
             Register();
         }
 
+        /// <summary>
+        /// Registers OWIN authorization, application services and the repository interfaces
+        /// </summary>
         public void Register()
         {
-            //Todo: Registerr interfaces here
             RegisterAuthorization();
+            RegisterAppServices();
+            RegisterRepositories();
         }
 
-        private void RegisterProviders()
-        {
-            _container.RegisterType<OAuthAuthorizationServerProvider, ApplicationOAuthProvider>();
-
-            _container.RegisterType<IAuthenticationTokenProvider, OAuthRefreshTokenProvider>();
-
-            _container.RegisterType<IGoogleOAuth2AuthenticationProvider, GoogleAuthProvider>();
-            _container.RegisterType<FacebookAuthenticationProvider, FacebookAuthProvider>();
-            _container.RegisterType<TwitterAuthenticationProvider, TwitterAuthProvider>();
-        }
-
+        /// <summary>
+        /// Registers Owin Authorzation
+        /// </summary>
         private void RegisterAuthorization()
         {
             _container.RegisterType<ApplicationUserDbContext>(
@@ -71,5 +71,43 @@ namespace Restaurant.Host.Ioc.Unity
 
             RegisterProviders();
         }
+
+        private void RegisterProviders()
+        {
+            _container.RegisterType<OAuthAuthorizationServerProvider, ApplicationOAuthProvider>();
+
+            _container.RegisterType<IAuthenticationTokenProvider, OAuthRefreshTokenProvider>();
+
+            _container.RegisterType<IGoogleOAuth2AuthenticationProvider, GoogleAuthProvider>();
+            _container.RegisterType<FacebookAuthenticationProvider, FacebookAuthProvider>();
+            _container.RegisterType<TwitterAuthenticationProvider, TwitterAuthProvider>();
+        }
+
+        /// <summary>
+        /// Registers the application services
+        /// </summary>
+        private void RegisterAppServices()
+        {
+            _container.RegisterType<IReservationAppService, ReservationAppService>();
+        }
+
+        /// <summary>
+        /// Registers repository contracts
+        /// </summary>
+        private void RegisterRepositories()
+        {
+            _container.RegisterType<IReservationRepository>();
+        }
+
+        /// <summary>
+        /// Registers the restaurant unit of work
+        /// </summary>
+        private void RegisterUnitOfWorks()
+        {
+            _container.RegisterType<ITransactionUnitOfWork, RestaurantUnitOfWorkMySql>(
+                new PerResolveLifetimeManager(),
+                new InjectionConstructor("RestaurantDataSource"));
+        }
+
     }
 }

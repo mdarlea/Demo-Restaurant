@@ -291,6 +291,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authorization\ApplicationSignInManager.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Helpers\RestaurantApiController.cs" />
     <Compile Include="Migrations\201507200308550_InitialCreate.cs" />
     <Compile Include="Migrations\201507200308550_InitialCreate.Designer.cs">
@@ -316,6 +317,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\ReservationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
@@ -335,6 +337,7 @@
     <Content Include="app\providers\configuration.Debug.js" />
     <Content Include="app\providers\configuration.js" />
     <Content Include="app\services\authInterceptorService.js" />
+    <Content Include="app\services\reservationService.js" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\register.html" />
@@ -1247,6 +1250,24 @@
     <EmbeddedResource Include="Migrations\201507200308550_InitialCreate.resx">
       <DependentUpon>201507200308550_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Restaurant.Dto\Application.Restaurant.Dto.csproj">
+      <Project>{2115eccf-b773-4912-8f2b-8b97057134ba}</Project>
+      <Name>Application.Restaurant.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Restaurant\Application.Restaurant.csproj">
+      <Project>{bc0dd9ab-b080-4d67-873d-b6e63a42a9cb}</Project>
+      <Name>Application.Restaurant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Restaurant\Data.Restaurant.csproj">
+      <Project>{E64377C8-13E4-4C0D-9F16-A26C19F23A6D}</Project>
+      <Name>Data.Restaurant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Restaurant\Domain.Restaurant.csproj">
+      <Project>{F27E54BB-7735-4EA1-B8DF-A93B33227CD0}</Project>
+      <Name>Domain.Restaurant</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

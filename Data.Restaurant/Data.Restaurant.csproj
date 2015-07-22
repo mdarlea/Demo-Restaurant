@@ -31,23 +31,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidationNA, Version=1.2.16.24816, Culture=neutral, PublicKeyToken=0950390b87309e14, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidationNA.1.2.16\lib\net40\FluentValidationNA.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Swaksoft.Core, Version=1.0.0.5, Culture=neutral, PublicKeyToken=f8a6cbf6057bc61f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swaksoft.Core.1.0.6\lib\net45\Swaksoft.Core.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.6.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.7\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swaksoft.Core, Version=1.0.7.0, Culture=neutral, PublicKeyToken=f8a6cbf6057bc61f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Core.1.0.7.0\lib\net45\Swaksoft.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.7.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Swaksoft.Infrastructure.Crosscutting, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -76,10 +84,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork\RestaurantUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\RestaurantUnitOfWorkMySql.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Restaurant\Domain.Restaurant.csproj">
+      <Project>{F27E54BB-7735-4EA1-B8DF-A93B33227CD0}</Project>
+      <Name>Domain.Restaurant</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReservationModule\" />
+    <Folder Include="UnitOfWork\Mapping\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
