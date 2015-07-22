@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Restaurant.Host.Models
 {
@@ -12,7 +9,10 @@ namespace Restaurant.Host.Models
         public DateTime ReservationDate { get; set; }
 
         [Required]
-        public DateTime ReservationTime { get; set; }
+        public int Hours { get; set; }
+
+        [Required]
+        public int Minutes {get; set;}
 
         [Required]
         public string Name { get; set; }

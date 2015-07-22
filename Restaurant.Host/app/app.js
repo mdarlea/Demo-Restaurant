@@ -71,6 +71,12 @@ appRestaurant.config(function ($provide) {
                 timeToReturn.setSeconds(Math.round(timeToReturn.getSeconds() / 60) * 60);
                 timeToReturn.setMinutes(Math.round(timeToReturn.getMinutes() / roundTime) * roundTime);
                 return timeToReturn;
+            },
+            toJavaScriptDate: function(value) {
+                var pattern = /Date\(([^)]+)\)/;
+                var results = pattern.exec(value);
+                var dt = new Date(parseFloat(results[1]));
+                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
             }
         });
 

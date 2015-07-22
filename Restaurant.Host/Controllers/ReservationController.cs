@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +15,9 @@ using Swaksoft.Core.Dto;
 
 namespace Restaurant.Host.Controllers
 {
+    /// <summary>
+    /// Reservation API controller to create, update and delete a reservation
+    /// </summary>
     [RoutePrefix("api/reservation")]
     [Authorize]
     public class ReservationController : RestaurantApiController
@@ -43,6 +47,11 @@ namespace Restaurant.Host.Controllers
         // GET api/<controller>/5
         public IHttpActionResult Get(int id)
         {
+            if (id < 1)
+            {
+                return BadRequest("Invalid reservation id");
+            }
+
             var result = _reservationAppService.GetReservation(id);
 
             if (result.Status == ActionResultCode.Success)
@@ -63,21 +72,14 @@ namespace Restaurant.Host.Controllers
                 return BadRequest(ModelState);
             }
 
-            var reservationDate = viewModel.ReservationDate;
-            var reservationTime = viewModel.ReservationTime;
-
+            var date = viewModel.ReservationDate;
+            var reservationDateTime = new DateTime(date.Year,date.Month,date.Day,viewModel.Hours,viewModel.Minutes,0);
+            
             //creates a new request for a reservation
             var request = new ReservationRequest
             {
                 UserId = User.Identity.GetUserId(),
-                ReservationDateTime = new DateTime(
-                    reservationDate.Year,
-                    reservationDate.Month,
-                    reservationDate.Day,
-                    reservationTime.Hour,
-                    reservationTime.Minute,
-                    0,
-                    DateTimeKind.Utc),
+                ReservationDateTime = reservationDateTime,
                 GuestsCount = viewModel.GuestsCount,
                 Name = viewModel.Name
             };
@@ -96,6 +98,7 @@ namespace Restaurant.Host.Controllers
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]ReservationViewModel viewModel)
         {
+
         }
 
         // DELETE api/<controller>/5

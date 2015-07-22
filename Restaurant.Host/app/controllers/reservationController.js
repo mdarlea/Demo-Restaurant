@@ -58,6 +58,21 @@
                 };
             }
 
+            //function that converts the reservation date and time into a string to fix the MVC date issue
+            var updateReservationDateTime = function () {
+                var data = $scope.data;
+
+                if (!data.reservationTime) {
+                    return false;
+                }
+
+                var time = new Date(data.reservationTime);
+                data.hours = time.getHours();
+                data.minutes = time.getMinutes();
+                
+                return true;
+            }    
+            
             $scope.numberExpr = /^[1-9][0-9]*$/;
             
             /**
@@ -70,18 +85,18 @@
             $scope.addNewReservation = function (isValid) {
 
                 // check to make sure the form is completely valid
-                if (!isValid) {
-                    $scope.message = "Invalid form data";
+                if (!isValid || !updateReservationDateTime()) {
+                    $scope.errMessage = "Invalid form data";
                     return false;
                 }
 
                 $scope.message = null;
                 $scope.errMessage = null;
                 $scope.loading = true;
-
+                    
                 $reservationService.addNewReservation($scope.data).$promise
                     .then(function (response) {
-                        
+                        $location.path('/reservations');
                     }, function (err) {
                         $scope.errMessage = err.data && err.data.message;
                     })
