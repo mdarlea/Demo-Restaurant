@@ -1,8 +1,8 @@
 ﻿<h2>Register</h2>
 <div class="row">
-    <form class="form-horizontal" role="form" name="registerForm" ng-submit="submitRegistration(registerForm.$valid)" novalidate>
+    <form class="form-horizontal" role="form" name="registerForm" ng-submit="register(registerForm.$valid)" novalidate>
         <h4>Create a new account.</h4>
-        <hr/>
+        <hr />
         <div class="col-xs-3">
             <sw-form-field label="Email:" name="email"
                            placeholder="Email"
@@ -17,19 +17,18 @@
                            data-ng-model="registerData.hometown">
             </sw-form-field>
             <sw-form-field label="Password:" name="password"
-                            placeholder="Password"
-                            type="password"
-                            data-ng-model="registerData.password" ng-required="true">
+                           placeholder="Password"
+                           type="password"
+                           data-ng-model="registerData.password" ng-required="true">
             </sw-form-field>
             <sw-form-field label="Confirm Password:" name="confirmPassword"
-                            placeholder="Confirm Password"
-                            type="password"
-                            data-ng-model="registerData.confirmPassword" ng-required="true">
+                           placeholder="Confirm Password"
+                           type="password"
+                           data-ng-model="registerData.confirmPassword" ng-required="true">
             </sw-form-field>
-
-                
+           
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success" type="submit" ng-disabled="registerForm.$invalid">
+                <button class="btn btn-success" type="submit" ng-disabled="loading || registerForm.$invalid">
                     Register
                 </button>
             </div>

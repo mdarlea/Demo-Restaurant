@@ -51,6 +51,15 @@ appRestaurant.config(function ($provide) {
                 }
                 var len = root.length;
                 return url.substr(len, pos - len);
+            },
+            roundTime: function(time,round) {
+                var timeToReturn = new Date(time);
+                var roundTime = round || 15;
+
+                timeToReturn.setMilliseconds(Math.round(time.getMilliseconds() / 1000) * 1000);
+                timeToReturn.setSeconds(Math.round(timeToReturn.getSeconds() / 60) * 60);
+                timeToReturn.setMinutes(Math.round(timeToReturn.getMinutes() / roundTime) * roundTime);
+                return timeToReturn;
             }
         });
 

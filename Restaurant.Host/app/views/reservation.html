@@ -40,9 +40,14 @@
 
                 <div class="form-group">
                     <!-- Button -->
-                    <button type="submit" class="btn btn-success" ng-disabled="reservationForm.$invalid">Submit</button>
+                    <button type="submit" class="btn btn-success" ng-disabled="loading || reservationForm.$invalid">Submit</button>
                 </div>
             </div>
         </fieldset>
     </form>
+</div>
+<div class="row" ng-if="message">
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
 </div>

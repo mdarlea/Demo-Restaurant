@@ -8,10 +8,10 @@ namespace Infrastructure.Data.Restaurant.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Reservations",
+                "Reservations",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false,identity:true),
                         CreatedBy = c.String(nullable: false, maxLength: 125, storeType: "nvarchar"),
                         CreatedOn = c.DateTime(nullable: false, precision: 0),
                         ModifiedBy = c.String(unicode: false),
@@ -27,7 +27,7 @@ namespace Infrastructure.Data.Restaurant.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Reservations");
+            DropTable("Reservations");
         }
     }
 }

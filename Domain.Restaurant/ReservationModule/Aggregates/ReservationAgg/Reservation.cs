@@ -24,12 +24,10 @@ namespace Domain.Restaurant.ReservationModule.Aggregates.ReservationAgg
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            Expression<Func<Reservation, int>> propertyExpression = e => e.GuestsCount;
-
             var result = this.ValidationResults(base.Validate(validationContext))
                 .NotNullOrEmpty(e => e.Name)
-                .Validate(e => e.GuestsCount, value => value > 0, "Invalid guests number")
-                .Validate(e => e.ReservationDateTime, value => value.CompareTo(DateTime.Now) >= 0, "A reservation cannot be made in the past")
+                .Validate(e => e.GuestsCount, value => value < 1, "Invalid guests number")
+                .Validate(e => e.ReservationDateTime, value => value.CompareTo(DateTime.Now) < 0, "A reservation cannot be made in the past")
                 .Execute();
 
             return result;

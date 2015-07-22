@@ -54,8 +54,8 @@
       <HintPath>..\packages\Swaksoft.Core.1.0.7.0\lib\net45\Swaksoft.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.7.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
+    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.9.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Swaksoft.Infrastructure.Crosscutting, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201507220458019_InitialCreate.Designer.cs">
       <DependentUpon>201507220458019_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507220846252_EntityIdentity.cs" />
+    <Compile Include="Migrations\201507220846252_EntityIdentity.Designer.cs">
+      <DependentUpon>201507220846252_EntityIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationModule\Repositories\ReservationRepository.cs" />
@@ -108,6 +112,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507220458019_InitialCreate.resx">
       <DependentUpon>201507220458019_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507220846252_EntityIdentity.resx">
+      <DependentUpon>201507220846252_EntityIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

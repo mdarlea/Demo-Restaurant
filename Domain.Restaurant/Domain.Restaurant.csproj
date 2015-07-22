@@ -34,8 +34,8 @@
       <HintPath>..\packages\Swaksoft.Core.1.0.7.0\lib\net45\Swaksoft.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.7.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
+    <Reference Include="Swaksoft.Domain.Seedwork, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swaksoft.Domain.Seedwork.1.0.9.0\lib\net45\Swaksoft.Domain.Seedwork.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

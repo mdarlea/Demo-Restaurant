@@ -35,6 +35,7 @@ namespace Restaurant.Host
             PublicClientId = "web";
 
             var provider = DependencyResolver.Current.GetService<OAuthAuthorizationServerProvider>();
+            var oauthRefreshTokenProvider = DependencyResolver.Current.GetService<IAuthenticationTokenProvider>();
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
@@ -42,7 +43,8 @@ namespace Restaurant.Host
                 AuthorizeEndpointPath = new PathString("/Account/Authorize"),
                 Provider = provider,
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                AllowInsecureHttp = true
+                AllowInsecureHttp = true,
+                AccessTokenProvider = oauthRefreshTokenProvider
             };
         }
 
