@@ -12,7 +12,7 @@
     * @requires swCommon.$utilities
     * @requires $routeParams
 
-    * @description Reservation controller
+    * @description Reservation controller responsible for creating, updating and removing reservations
     */
 
     angular.module('appRestaurant').controller('reservationController',
@@ -23,6 +23,8 @@
             if (!$authService.authentication.isAuth) {
                 $location.path('/login');
             };
+
+            $scope.numberExpr = /^[1-9][0-9]*$/;
 
             //check if this is a request for an existinng reservation
             if ($routeParams.id) {
@@ -71,9 +73,7 @@
                 data.minutes = time.getMinutes();
                 
                 return true;
-            }    
-            
-            $scope.numberExpr = /^[1-9][0-9]*$/;
+            }
             
             /**
             * @ngdoc function
@@ -90,7 +90,7 @@
                     return false;
                 }
 
-                $scope.message = null;
+                $scope.message = "Please wait while I am adding the reservation into the system ...";
                 $scope.errMessage = null;
                 $scope.loading = true;
                     
@@ -102,22 +102,45 @@
                     })
                     .finally(function (response) {
                         $scope.loading = false;
-                    });
+                        $scope.message = null;
+                });
             };
 
             //function to change an existing reservation
             /**
             * @ngdoc function
-            * @name appRestaurant.reservationController#addNewReservation
+            * @name appRestaurant.reservationController#updateReservation
             * @methodOf appRestaurant.reservationController
             * @param {boolean} isValid True if the "Registration" form passed validation, False otherwise
             * @description Changes an existing reservation if validation passed
             */
-            $scope.updateReservation = function(isValid) {
-                $scope.message = null;
+            $scope.updateReservation = function (isValid) {
+                if (!id) {
+                    //nothing to do if there is no id
+                    return false;
+                }
+
+                // check to make sure the form is completely valid
+                if (!isValid || !updateReservationDateTime()) {
+                    $scope.errMessage = "Invalid form data";
+                    return false;
+                }
+
+                $scope.message = "Please wait while I am updating the reservation ...";
                 $scope.errMessage = null;
                 $scope.loading = true;
-            }
+
+                $reservationService.updateReservation({ id: id }, $scope.data).$promise
+                    .then(function(response) {
+                        $location.path('/reservations');
+                    }, function(err) {
+                        $scope.errMessage = err.data && err.data.message;
+                    })
+                    .finally(function(response) {
+                        $scope.loading = false;
+                        $scope.message = null;
+                    });
+            };
 
         }]);
 })();

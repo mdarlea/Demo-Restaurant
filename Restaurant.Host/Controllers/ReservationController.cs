@@ -98,12 +98,13 @@ namespace Restaurant.Host.Controllers
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]ReservationViewModel viewModel)
         {
-
+            throw new NotImplementedException();
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            throw new NotImplementedException();
         }
 
         protected override void Dispose(bool disposing)

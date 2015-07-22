@@ -14,6 +14,9 @@
                         method: 'POST',
                         isArray: false
                     },
+                    'updateReservation' : {
+                        method: 'PUT'
+                    },
                     'getAllReservations' : {
                         method: 'GET',
                         isArray: true
