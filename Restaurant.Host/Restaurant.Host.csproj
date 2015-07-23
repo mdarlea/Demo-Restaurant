@@ -333,6 +333,7 @@
     <Content Include="app\controllers\reservationsController.js" />
     <Content Include="app\controllers\reservationController.js" />
     <Content Include="app\controllers\topNavController.js" />
+    <Content Include="app\css\reservation.css" />
     <Content Include="app\providers\configuration.Debug.js" />
     <Content Include="app\providers\configuration.js" />
     <Content Include="app\services\authInterceptorService.js" />
