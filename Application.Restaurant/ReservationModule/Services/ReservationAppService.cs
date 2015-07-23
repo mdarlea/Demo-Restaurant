@@ -4,6 +4,7 @@ using Swaksoft.Application.Seedwork.Extensions;
 using Swaksoft.Application.Seedwork.Services;
 using Swaksoft.Core.Dto;
 using Swaksoft.Infrastructure.Crosscutting.Extensions;
+using Swaksoft.Infrastructure.Crosscutting.Validation;
 
 namespace Application.Restaurant.ReservationModule.Services
 {
@@ -30,8 +31,26 @@ namespace Application.Restaurant.ReservationModule.Services
             {
                 //creates a new reservation entity
                 var reservation = ReservationFactory.CreateReservation(request.Name, request.ReservationDateTime, request.GuestsCount, request.UserId);
-                _reservationRepository.SaveEntity(reservation);
 
+                var entityValidator = EntityValidatorLocator.CreateValidator();
+                if (entityValidator.IsValid(reservation))
+                {
+                    using (var transaction = _reservationRepository.BeginTransaction())
+                    {
+                        _reservationRepository.Add(reservation);
+                        transaction.Commit();
+                    }
+                }
+                else
+                {
+                    return new Dto.ReservationResult
+                    {
+                        Status = ActionResultCode.Errored,
+                        Message = Messages.validation_errors,
+                        Errors = entityValidator.GetInvalidMessages(reservation)
+                    };
+                }
+                
                 //returns success
                 return reservation.ProjectedAs<Dto.ReservationResult>();
             });
@@ -59,6 +78,7 @@ namespace Application.Restaurant.ReservationModule.Services
         /// <summary>
         /// Get a reservation by ID
         /// </summary>
+        /// <param name="id">The reservation id</param>
         /// <returns>The reservation with the given ID</returns>
         public Dto.ReservationResult GetReservation(int id)
         {
@@ -74,7 +94,7 @@ namespace Application.Restaurant.ReservationModule.Services
                     return new Dto.ReservationResult
                     {
                         Status = ActionResultCode.Failed,
-                        Message = string.Format("Could not find a reservation with the {0} id", id)
+                        Message = string.Format(Messages.reservation_not_found, id)
                     };
                 }
                 return reservation.ProjectedAs<Dto.ReservationResult>();
@@ -82,29 +102,88 @@ namespace Application.Restaurant.ReservationModule.Services
         }
 
         /// <summary>
-        /// Mark a reservetion as deleted
+        /// Updates an existing reservation
         /// </summary>
+        /// <param name="id">The reservation id</param>
+        /// <param name="request">The changed reservation DTO</param>
+        /// <returns>The updated reservation DTO</returns>
+        public Dto.ReservationResult UpdateReservation(int id, Dto.ReservationRequest request)
+        {
+            if (id < 1) throw new ArgumentOutOfRangeException("id");
+
+            return Call(() =>
+            {
+                using (var transaction = _reservationRepository.BeginTransaction())
+                {
+                    //get the reservation
+                    var reservation = _reservationRepository.Get(id);
+
+                    //returns failure if a reservation is not found
+                    if (reservation == null)
+                    {
+                        return new Dto.ReservationResult
+                        {
+                            Status = ActionResultCode.Failed,
+                            Message = string.Format(Messages.reservation_not_found, id)
+                        };
+                    }
+
+                    //updates fields from the DTO
+                    reservation.Name = request.Name;
+                    reservation.ReservationDateTime = request.ReservationDateTime;
+                    reservation.GuestsCount = request.GuestsCount;
+                    reservation.ModifiedBy = request.UserId;
+                    reservation.ModifiedOn = DateTime.Now;
+
+                    //validates the reservation
+                    var entityValidator = EntityValidatorLocator.CreateValidator();
+                    if (entityValidator.IsValid(reservation))
+                    {
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        return new Dto.ReservationResult
+                        {
+                            Status = ActionResultCode.Errored,
+                            Message = Messages.validation_errors,
+                            Errors = entityValidator.GetInvalidMessages(reservation)
+                        };
+                    }
+
+                    //returns the updated reservation
+                    return reservation.ProjectedAs<Dto.ReservationResult>();
+                }
+            });
+        }
+
+        /// <summary>
+        /// Marks a reservation as deleted
+        /// </summary>
+        /// <param name="id">The id of the reservation that must be removed</param>
+        /// <returns></returns>
         public ActionResult DeleteReservation(int id)
         {
             if (id < 1) throw new ArgumentOutOfRangeException("id");
 
             return Call(() =>
             {
-                //get the reservation
-                var reservation = _reservationRepository.Get(id);
-
                 //returns failure if a reservation is not found
-                if (reservation == null)
-                {
-                    return new Dto.ReservationResult
-                    {
-                        Status = ActionResultCode.Failed,
-                        Message = string.Format("Could not find a reservation with the {0} id", id)
-                    };
-                }
-
                 using (var transaction = _reservationRepository.BeginTransaction())
                 {
+                    //get the reservation
+                    var reservation = _reservationRepository.Get(id);
+
+                    //returns failure if a reservation is not found
+                    if (reservation == null)
+                    {
+                        return new Dto.ReservationResult
+                        {
+                            Status = ActionResultCode.Failed,
+                            Message = string.Format(Messages.reservation_not_found, id)
+                        };
+                    }
+
                     //mark this reservation as deleted
                     reservation.IsDeleted = true;
                     
@@ -112,7 +191,7 @@ namespace Application.Restaurant.ReservationModule.Services
                 }
                 
                 //return success
-                return new ActionResult()
+                return new ActionResult
                 {
                     Status = ActionResultCode.Success
                 };

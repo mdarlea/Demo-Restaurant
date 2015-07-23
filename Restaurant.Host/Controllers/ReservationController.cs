@@ -71,34 +71,41 @@ namespace Restaurant.Host.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var date = viewModel.ReservationDate;
-            var reservationDateTime = new DateTime(date.Year,date.Month,date.Day,viewModel.Hours,viewModel.Minutes,0);
             
             //creates a new request for a reservation
-            var request = new ReservationRequest
-            {
-                UserId = User.Identity.GetUserId(),
-                ReservationDateTime = reservationDateTime,
-                GuestsCount = viewModel.GuestsCount,
-                Name = viewModel.Name
-            };
+            var request = viewModel.ToReservationRequest(User.Identity.GetUserId());
 
             //saves this reservation to the database
             var result = _reservationAppService.AddNewReservation(request);
 
-            if (result.Status == ActionResultCode.Success)
+            if (result.Status != ActionResultCode.Success)
             {
-                return Ok(result);
+                var errorResult = GetErrorResult(result);
+                return errorResult ?? BadRequest(ModelState);
             }
 
-            return BadRequest(result.Message);
+            return Ok(result);
         }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]ReservationViewModel viewModel)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
+            
+            //updates this reservation
+            var request = viewModel.ToReservationRequest(User.Identity.GetUserId());
+            var result = _reservationAppService.UpdateReservation(id, request);
+
+            if (result.Status != ActionResultCode.Success)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
         }
 
         // DELETE api/<controller>/5

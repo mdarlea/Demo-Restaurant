@@ -1,5 +1,4 @@
 ﻿using System;
-using Swaksoft.Core.Dto;
 
 namespace Application.Restaurant.Dto
 {
