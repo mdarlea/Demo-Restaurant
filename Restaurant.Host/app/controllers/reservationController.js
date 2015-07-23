@@ -142,5 +142,34 @@
                     });
             };
 
+            //function to change an existing reservation
+            /**
+            * @ngdoc function
+            * @name appRestaurant.reservationController#deleteReservation
+            * @methodOf appRestaurant.reservationController
+            * @param {boolean} isValid True if the "Registration" form passed validation, False otherwise
+            * @description Changes an existing reservation if validation passed
+            */
+            $scope.deleteReservation = function () {
+                if (!id) {
+                    //nothing to do if there is no id
+                    return false;
+                }
+
+                $scope.message = "Please wait while I am deleting the reservation ...";
+                $scope.errMessage = null;
+                $scope.loading = true;
+
+                $reservationService.deleteReservation({ id: id }).$promise
+                    .then(function (response) {
+                        $location.path('/reservations');
+                    }, function (err) {
+                        $scope.errMessage = err.data && err.data.message;
+                    })
+                    .finally(function (response) {
+                        $scope.loading = false;
+                        $scope.message = null;
+                    });
+            };
         }]);
 })();

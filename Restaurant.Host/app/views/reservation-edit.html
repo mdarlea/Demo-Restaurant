@@ -1,11 +1,13 @@
 ﻿<div class="row" ng-if="loading" data-ng-include data-src="'/app/views/loading-partial.html'"></div>
 <div class="row" ng-if="!loading">
     <form class="form-horizontal" name="reservationForm" ng-submit="updateReservation(reservationForm.$valid)" novalidate>
-        <fieldset>
+        <fieldset>          
             <div id="legend">
                 <legend class="">Modify Reservation</legend>
             </div>
-
+            <button type="button" class="btn btn-labeled btn-danger col-xs-offset-7" ng-click="deleteReservation()">
+                <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>Delete Reservation
+            </button>  
             <div class="col-xs-3" data-ng-include data-src="'/app/views/reservation-partial.html'"></div>
         </fieldset>
     </form>

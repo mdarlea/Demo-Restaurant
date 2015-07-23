@@ -104,7 +104,13 @@ namespace Restaurant.Host.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
+
+            //removes this reservation
+            _reservationAppService.DeleteReservation(id);
         }
 
         protected override void Dispose(bool disposing)

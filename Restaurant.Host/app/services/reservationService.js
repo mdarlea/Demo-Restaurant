@@ -17,6 +17,9 @@
                     'updateReservation' : {
                         method: 'PUT'
                     },
+                    'deleteReservation' : {
+                        method: 'DELETE'
+                    },
                     'getAllReservations' : {
                         method: 'GET',
                         isArray: true

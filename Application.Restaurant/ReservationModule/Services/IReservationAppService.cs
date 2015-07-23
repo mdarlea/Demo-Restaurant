@@ -1,4 +1,5 @@
 using System;
+using Swaksoft.Core.Dto;
 
 namespace Application.Restaurant.ReservationModule.Services
 {
@@ -25,5 +26,12 @@ namespace Application.Restaurant.ReservationModule.Services
         /// </summary>
         /// <returns>The reservation with the given ID</returns>
         Dto.ReservationResult GetReservation(int id);
+
+        /// <summary>
+        /// Marks a reservation as deleted
+        /// </summary>
+        /// <param name="id">The id of the reservation that must be removed</param>
+        /// <returns></returns>
+        ActionResult DeleteReservation(int id);
     }
 }

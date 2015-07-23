@@ -81,6 +81,44 @@ namespace Application.Restaurant.ReservationModule.Services
             });
         }
 
+        /// <summary>
+        /// Mark a reservetion as deleted
+        /// </summary>
+        public ActionResult DeleteReservation(int id)
+        {
+            if (id < 1) throw new ArgumentOutOfRangeException("id");
+
+            return Call(() =>
+            {
+                //get the reservation
+                var reservation = _reservationRepository.Get(id);
+
+                //returns failure if a reservation is not found
+                if (reservation == null)
+                {
+                    return new Dto.ReservationResult
+                    {
+                        Status = ActionResultCode.Failed,
+                        Message = string.Format("Could not find a reservation with the {0} id", id)
+                    };
+                }
+
+                using (var transaction = _reservationRepository.BeginTransaction())
+                {
+                    //mark this reservation as deleted
+                    reservation.IsDeleted = true;
+                    
+                    transaction.Commit();
+                }
+                
+                //return success
+                return new ActionResult()
+                {
+                    Status = ActionResultCode.Success
+                };
+            });
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
