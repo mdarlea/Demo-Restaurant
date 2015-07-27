@@ -60,17 +60,17 @@ namespace Application.Restaurant.ReservationModule.Services
         /// Get all the reservations
         /// </summary>
         /// <returns>A collection with found reservations</returns>
-        public Dto.CollectionActionResult<Dto.Reservation> GetAllReservations()
+        public Dto.CollectionActionResult<Dto.ReservationRequest> GetAllReservations()
         {
             return Call(() =>
             {
                 var spec = ReservationSpecifications.GetAll();
                 var reservations = _reservationRepository.AllMatching(spec);
 
-                return new Dto.CollectionActionResult<Dto.Reservation>
+                return new Dto.CollectionActionResult<Dto.ReservationRequest>
                 {
                     Status = ActionResultCode.Success,
-                    Items = reservations.ProjectedAsCollection<Dto.Reservation>()
+                    Items = reservations.ProjectedAsCollection<Dto.ReservationRequest>()
                 };
             });
         }

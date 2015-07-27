@@ -19,7 +19,7 @@ namespace Application.Restaurant.ReservationModule.Services
         /// Get all the reservations
         /// </summary>
         /// <returns>A collection with found reservations</returns>
-        Dto.CollectionActionResult<Dto.Reservation> GetAllReservations();
+        Dto.CollectionActionResult<Dto.ReservationRequest> GetAllReservations();
 
         /// <summary>
         /// Get a reservation by ID

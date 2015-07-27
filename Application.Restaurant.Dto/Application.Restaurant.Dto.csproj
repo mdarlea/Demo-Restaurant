@@ -48,7 +48,6 @@
     <Compile Include="ActionResult.cs" />
     <Compile Include="CollectionActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reservation.cs" />
     <Compile Include="ReservationRequest.cs" />
     <Compile Include="ReservationResult.cs" />
   </ItemGroup>

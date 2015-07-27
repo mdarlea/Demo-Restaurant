@@ -11,7 +11,7 @@ namespace Application.Restaurant.TypeMapping.Profiles
         {
             MapperExtensions.CreateActionResultMap<Reservation, Dto.ReservationResult>();
 
-            Mapper.CreateMap<Reservation, Dto.Reservation>();
+            Mapper.CreateMap<Reservation, Dto.ReservationRequest>();
         }
     }
 }
