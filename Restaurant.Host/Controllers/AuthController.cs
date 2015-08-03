@@ -58,7 +58,10 @@ namespace Restaurant.Host.Controllers
                 // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                 //generate access token response
-                var accessTokenResponse = await _oauthTokenGenerator.GenerateLocalAccessToken(user, model.ClientId);
+                var accessTokenResponse = await _oauthTokenGenerator.GenerateLocalAccessToken(
+                    user,
+                    model.ClientId, 
+                    Startup.OAuthOptions.AccessTokenExpireTimeSpan);
 
                 return Ok(accessTokenResponse);
             }

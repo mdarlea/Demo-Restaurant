@@ -5,16 +5,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.Twitter;
 using Owin;
-using Restaurant.Host.Authorization;
 using Restaurant.Host.Models;
-using Restaurant.Host.Providers;
 using Swaksoft.Configuration.Social;
 using Swaksoft.Core.External;
 
@@ -26,14 +23,13 @@ namespace Restaurant.Host
         public static GoogleOAuth2AuthenticationOptions GoogleAuthOptions { get; private set; }
         public static FacebookAuthenticationOptions FacebookAuthOptions { get; private set; }
         public static TwitterAuthenticationOptions TwitterAuthOptions { get; private set; }
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         private static readonly object thisObject = new object();
 
         // Enable the application to use OAuthAuthorization. You can then secure your Web APIs
         static Startup()
         {
-            PublicClientId = "web";
-
             var provider = DependencyResolver.Current.GetService<OAuthAuthorizationServerProvider>();
             var oauthRefreshTokenProvider = DependencyResolver.Current.GetService<IAuthenticationTokenProvider>();
 
@@ -42,15 +38,11 @@ namespace Restaurant.Host
                 TokenEndpointPath = new PathString("/Token"),
                 AuthorizeEndpointPath = new PathString("/Account/Authorize"),
                 Provider = provider,
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 AllowInsecureHttp = true,
                 AccessTokenProvider = oauthRefreshTokenProvider
             };
         }
-
-        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
-
-        public static string PublicClientId { get; private set; }
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
@@ -97,9 +89,9 @@ namespace Restaurant.Host
            
             lock (thisObject)
             {
-                OAuthBearerOptions = new OAuthBearerAuthenticationOptions()
+                OAuthBearerOptions = new OAuthBearerAuthenticationOptions
                 {
-                    AccessTokenProvider = OAuthOptions. AccessTokenProvider
+                    AccessTokenProvider = OAuthOptions.AccessTokenProvider
                 };
 
                 //Configure Facebook External Login
